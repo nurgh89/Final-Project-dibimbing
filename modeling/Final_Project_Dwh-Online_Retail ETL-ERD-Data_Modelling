@@ -1,0 +1,86 @@
+CREATE TABLE "customers" (
+  "id" integer PRIMARY KEY,
+  "first_name" varchar,
+  "last_name" varchar,
+  "address" varchar,
+  "gender" varchar,
+  "zip_code" varchar
+);
+
+CREATE TABLE "login_attempt_history" (
+  "id" integer PRIMARY KEY,
+  "customer_id" integer,
+  "login_successfull" boolean,
+  "attempted_at" timestamp
+);
+
+CREATE TABLE "products" (
+  "id" integer PRIMARY KEY,
+  "name" varchar,
+  "price" float,
+  "category_id" integer,
+  "supplier_id" integer
+);
+
+CREATE TABLE "product_categories" (
+  "id" integer PRIMARY KEY,
+  "name" varchar
+);
+
+CREATE TABLE "suppliers" (
+  "id" integer PRIMARY KEY,
+  "name" varchar,
+  "country" varchar
+);
+
+CREATE TABLE "orders" (
+  "id" integer PRIMARY KEY,
+  "customer_id" varchar,
+  "status" text,
+  "created_at" timestamp
+);
+
+CREATE TABLE "order_items" (
+  "id" integer PRIMARY KEY,
+  "order_id" integer,
+  "product_id" integer,
+  "amount" integer,
+  "coupon_id" integer
+);
+
+CREATE TABLE "coupons" (
+  "id" integer PRIMARY KEY,
+  "discount_percent" float
+);
+
+COMMENT ON TABLE "customers" IS '10K CSV';
+
+COMMENT ON TABLE "login_attempt_history" IS '1M JSON';
+
+COMMENT ON TABLE "products" IS '6072 XLS';
+
+COMMENT ON TABLE "product_categories" IS '6 XLS';
+
+COMMENT ON TABLE "suppliers" IS '300 XLS';
+
+COMMENT ON TABLE "orders" IS '100K PARQUET';
+
+COMMENT ON COLUMN "orders"."status" IS 'PROCESSED/SENT/RECEIVED/FINISHED/RETURN/ABORTED';
+
+COMMENT ON TABLE "order_items" IS '1M AVRO';
+
+COMMENT ON TABLE "coupons" IS '10 JSON';
+
+ALTER TABLE "product_categories" ADD FOREIGN KEY ("id") REFERENCES "products" ("category_id");
+
+ALTER TABLE "suppliers" ADD FOREIGN KEY ("id") REFERENCES "products" ("supplier_id");
+
+ALTER TABLE "orders" ADD FOREIGN KEY ("id") REFERENCES "order_items" ("order_id");
+
+ALTER TABLE "products" ADD FOREIGN KEY ("id") REFERENCES "order_items" ("product_id");
+
+ALTER TABLE "coupons" ADD FOREIGN KEY ("id") REFERENCES "order_items" ("coupon_id");
+
+ALTER TABLE "customers" ADD FOREIGN KEY ("id") REFERENCES "orders" ("customer_id");
+
+ALTER TABLE "login_attempt_history" ADD FOREIGN KEY ("customer_id") REFERENCES "customers" ("id");
