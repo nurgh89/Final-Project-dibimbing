@@ -1,3 +1,4 @@
+#team1
 version: '3.7'
 services:
 
@@ -29,7 +30,7 @@ services:
     volumes:
       - ../data:/data
     ports:
-      - ${DW_POSTGRES_PORT}:5432
+      - ${DW_POSTGRES_PORT}:5432 
 
   scheduler:
     image: dataeng-dibimbing/airflow
