@@ -1,5 +1,13 @@
 # Dibimbing - Kampus Merdeka 1 - Final Project Template
 
+## Tools
+   - Docker, Airflow, Metabase, Postgresql, Google Cloude(support), and with any extentions
+
+## Disclimer
+  - Extentions WSL is needed, so the first time you must check WSL or 
+    ```sh
+    wsl --install
+    ```
 ## How to
 - In order to spin up the containers, first you have to build all the Docker images needed using 
     ```sh
@@ -13,6 +21,14 @@
     - Access the Airflow on port `8081`
     - Access the Metabase on port `3001`, for the username and password, you can try to access the [.env](/.env) file
     - Since we have 2 Postgres containers, you can use `dataeng-warehouse-postgres` container as your data warehouse and ignore the `dataeng-ops-postgres` container since it is only being used for the opetrational purposes.
+
+- If you got problem with dags
+  - Changes your host = "35.240.213.100" this is host with Google Cloud 
+  - and Changes your Port = 5433
+
+- Metabase 
+  You can see user and password in .env [.env] file
+
 ---
 ## Folder Structure
 
@@ -39,24 +55,3 @@ Here is the place where you can modify or add a new docker stack if you decide t
 This folder contains script needed in order to automate an initializations process on docker-container setup.
 
 ---
-## Grading Criteria
-
-**Code Quality (20%)**
-- Code Readability (5%)
-- Code Efficiency (5%)
-- Documentation (10%)
-
-**Project Delivery (30%)**
-- Standard Template (6%)
-- Data Platform Improvisation (12%)
-- Data Modelling Improvisation (12%)
-
-**Implementation (40%)**
-- Data Extraction (Standard / Improved) (15%)
-- Data Pipeline (Standard / Best-Practice) (15%)
-- Data Analysis (10%)
-
-**Presentation (10%)**
-- Slide Content (4%)
-- Slide Design (3%)
-- Communication (3%)
