@@ -1,4 +1,4 @@
-# Dibimbing - Kampus Merdeka 1 - Final Project Template
+# Dibimbing - Kampus Merdeka 1 - Final Project - Online Retail ETL
 
 ## Tools
    - Docker, Airflow, Metabase, Postgresql, Google Cloude(support), and with any extentions
